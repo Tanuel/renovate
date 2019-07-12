@@ -758,3 +758,27 @@ Object {
   ],
 }
 `;
+
+exports[`lib/manager/composer/extract extractPackageFile() extracts sources from with composer.lock 1`] = `
+Object {
+  "composerLock": "composer.lock",
+  "deps": Array [
+    Object {
+      "currentValue": "1.1.0",
+      "datasource": "gitTags",
+      "depName": "awesome/vcs",
+      "depType": "require",
+      "lockedVersion": "1.1.0",
+      "lookupName": "https://my-vcs.example/my-vcs-repo",
+    },
+    Object {
+      "currentValue": "^1.1.0",
+      "datasource": "gitTags",
+      "depName": "awesome/git",
+      "depType": "require",
+      "lockedVersion": "1.2.0",
+      "lookupName": "git@my-git.example/awesome.git",
+    },
+  ],
+}
+`;

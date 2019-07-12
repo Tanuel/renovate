@@ -21,6 +21,15 @@ const requirements5 = fs.readFileSync(
   'test/manager/composer/_fixtures/composer5.json',
   'utf8'
 );
+const requirements6 = fs.readFileSync(
+  'test/manager/composer/_fixtures/composer6.json',
+  'utf8'
+);
+
+const requirements6Lock = fs.readFileSync(
+  'test/manager/composer/_fixtures/composer6.lock',
+  'utf8'
+);
 
 describe('lib/manager/composer/extract', () => {
   describe('extractPackageFile()', () => {
@@ -57,6 +66,16 @@ describe('lib/manager/composer/extract', () => {
       const res = await extractPackageFile(requirements5, packageFile);
       expect(res).toMatchSnapshot();
       expect(res.registryUrls).toHaveLength(1);
+    });
+    it('extracts sources from with composer.lock', async () => {
+      platform.getFile = jest.fn(fileName => {
+        if (fileName === 'composer.lock') {
+          return requirements6Lock;
+        }
+        return null;
+      });
+      const res = await extractPackageFile(requirements6, packageFile);
+      expect(res).toMatchSnapshot();
     });
     it('extracts dependencies with lock file', async () => {
       platform.getFile.mockReturnValueOnce('some content');
