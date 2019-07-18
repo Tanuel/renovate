@@ -1068,7 +1068,11 @@
             "properties": {
               "customRepositories": {
                 "description": "Configuration object for composer.json repositories",
-                "type": ["object", "array"]
+                "type": "object|array",
+                "default": {
+                  "fileMatch": ["(^|/)([\\w-]*)composer.json$"],
+                  "versionScheme": "composer"
+                }
               }
             }
           }
