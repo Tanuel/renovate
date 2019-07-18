@@ -83,7 +83,8 @@ function parseRepositories(
 
 export async function extractPackageFile(
   content: string,
-  fileName: string
+  fileName: string,
+  config: any
 ): Promise<PackageFile | null> {
   logger.trace(`composer.extractPackageFile(${fileName})`);
   let composerJson: ComposerConfig;
@@ -110,6 +111,13 @@ export async function extractPackageFile(
     }
   }
 
+  if (config && config.composer && config.composer.customRepositories) {
+    parseRepositories(
+      config.composer.customRepositories,
+      repositories,
+      registryUrls
+    );
+  }
   // handle composer.json repositories
   if (composerJson.repositories) {
     parseRepositories(composerJson.repositories, repositories, registryUrls);

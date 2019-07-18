@@ -1610,6 +1610,19 @@ const options: RenovateOptions[] = [
     cli: false,
   },
   {
+    name: 'customRepositories',
+    description: 'Configuration object for composer.json repositories',
+    stage: 'package',
+    type: 'object|array',
+    parent: 'composer',
+    default: {
+      fileMatch: ['(^|/)([\\w-]*)composer.json$'],
+      versionScheme: 'composer',
+    },
+    mergeable: true,
+    cli: false,
+  },
+  {
     name: 'php',
     description: 'Configuration object for php',
     stage: 'package',

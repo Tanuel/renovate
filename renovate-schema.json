@@ -1060,7 +1060,20 @@
         "fileMatch": ["(^|/)([\\w-]*)composer.json$"],
         "versionScheme": "composer"
       },
-      "$ref": "#"
+      "$ref": "#",
+      "items": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "customRepositories": {
+                "description": "Configuration object for composer.json repositories",
+                "type": ["object", "array"]
+              }
+            }
+          }
+        ]
+      }
     },
     "php": {
       "description": "Configuration object for php",
